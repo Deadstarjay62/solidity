@@ -47,6 +47,9 @@ Error::Error(
 	case Type::DocstringParsingError:
 		m_typeName = "DocstringParsingError";
 		break;
+	case Type::Info:
+		m_typeName = "Info";
+		break;
 	case Type::ParserError:
 		m_typeName = "ParserError";
 		break;
@@ -55,6 +58,9 @@ Error::Error(
 		break;
 	case Type::TypeError:
 		m_typeName = "TypeError";
+		break;
+	case Type::InterfaceError:
+		m_typeName = "InterfaceError";
 		break;
 	case Type::Warning:
 		m_typeName = "Warning";

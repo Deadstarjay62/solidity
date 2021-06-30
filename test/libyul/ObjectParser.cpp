@@ -85,7 +85,7 @@ optional<Error> parseAndReturnFirstError(string const& _source, bool _allowWarni
 	else
 	{
 		// If success is true, there might still be an error in the assembly stage.
-		if (_allowWarnings && Error::containsOnlyWarnings(errors))
+		if (_allowWarnings && Error::doesNotContainErrors(errors))
 			return {};
 		else if (!errors.empty())
 		{

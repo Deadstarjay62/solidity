@@ -119,7 +119,9 @@ public:
 		ParserError,
 		TypeError,
 		SyntaxError,
-		Warning
+		InterfaceError,
+		Warning,
+		Info
 	};
 
 	Error(
@@ -144,15 +146,34 @@ public:
 		}
 		return nullptr;
 	}
-	static bool containsOnlyWarnings(ErrorList const& _list)
+
+	static bool doesNotContainErrors(ErrorList const& _list)
 	{
 		for (auto e: _list)
-		{
-			if (e->type() != Type::Warning)
+			if (e->type() != Type::Warning && e->type() != Type::Info)
 				return false;
-		}
 		return true;
 	}
+
+	static std::string formatErrorCategory(Type _type)
+	{
+		std::string cat;
+		if (_type == Type::Info)
+			return "Info";
+		if (_type == Type::Warning)
+			return "Warning";
+		return "Error";
+	}
+
+	static std::string formatErrorCategoryLowercase(Type _type)
+	{
+		if (_type == Type::Info)
+			return "info";
+		if (_type == Type::Warning)
+			return "warning";
+		return "error";
+	}
+
 private:
 	ErrorId m_errorId;
 	Type m_type;
